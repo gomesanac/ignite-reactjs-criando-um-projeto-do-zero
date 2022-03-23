@@ -1,1 +1,69 @@
-// TODO
+.home {
+  a {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+
+    & + a {
+      margin-top: 2rem;
+      padding-top: 2rem;
+    }
+
+    &:last-of-type {
+      margin-bottom: 4rem;
+    }
+
+    strong {
+      display: block;
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+      line-height: 2rem;
+      transition: color 0.2s;
+    }
+
+    p {
+      color: var(--body);
+      margin-bottom: 1.125rem;
+      line-height: 1.625rem;
+    }
+
+    .info {
+      display: flex;
+
+      .timeDiv {
+        display: flex;
+        align-items: center;
+        margin-right: 1.5rem;
+
+        time {
+          font-size: 1rem;
+          color: var(--body);
+          margin-left: 0.5rem;
+        }
+      }
+
+      .authorDiv {
+        display: flex;
+        align-items: center;
+
+        span {
+          font-size: 1rem;
+          color: var(--body);
+          margin-left: 0.5rem;
+        }
+      }
+    }
+
+    &:hover strong {
+      color: var(--highlight);
+    }
+  }
+
+  .button {
+    background: transparent;
+    color: var(--highlight);
+    font-size: 1,125rem;
+    font-weight: 600;
+    margin: 0 0 calc(4rem - 1.75rem);
+  }
+}
