@@ -37,3 +37,4 @@ yarn-error.log*
 
 /.slicemachine
 /customtypes
+/slices
