@@ -8,3 +8,42 @@
   max-width: 720px;
   margin: 2rem auto;
 }
+
+.info {
+  display: flex;
+
+  .dateDiv {
+    display: flex;
+    align-items: center;
+    margin-right: 1.5rem;
+
+    time {
+      font-size: 1rem;
+      color: var(--body);
+      margin-left: 0.5rem;
+    }
+  }
+
+  .authorDiv {
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 1rem;
+      color: var(--body);
+      margin-left: 0.5rem;
+    }
+  }
+
+  .timeDiv {
+    display: flex;
+    align-items: center;
+    margin-left: 1.5rem;
+
+    span {
+      font-size: 1rem;
+      color: var(--body);
+      margin-left: 0.5rem;
+    }
+  }
+}

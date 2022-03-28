@@ -1,5 +1,8 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
+
+import { useState } from 'react';
 
 import { FiCalendar, FiUser } from 'react-icons/fi';
 
@@ -7,15 +10,11 @@ import Prismic from '@prismicio/client';
 
 import { getPrismicClient } from '../services/prismic';
 
+import formatResults from '../utils/formatResults';
+import formatDate from '../utils/formatDate';
+
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
-
-import Link from 'next/link';
-import { useState } from 'react';
-import formatResults from '../utils/formatResults';
-
-import { format } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
 
 interface Post {
   uid?: string;
@@ -39,14 +38,6 @@ interface HomeProps {
 export default function Home({ postsPagination }: HomeProps): JSX.Element {
   const [results, setResults] = useState(postsPagination.results);
   const [nextPage, setNextPage] = useState(postsPagination.next_page || null);
-
-  const formatDate = (date: string): string => {
-    const formatedDate = format(new Date(date), 'PP', {
-      locale: ptBR,
-    });
-
-    return formatedDate;
-  };
 
   const getMoreResults = async () => {
     const newResults = (await fetch(nextPage, { method: 'GET' }).then(
@@ -72,12 +63,12 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
               <a>
                 <strong>{post.data.title}</strong>
                 <p>{post.data.subtitle}</p>
-                <div className={styles.info}>
-                  <div className={styles.timeDiv}>
+                <div className={commonStyles.info}>
+                  <div className={commonStyles.dateDiv}>
                     <FiCalendar />
                     <time>{formatDate(post.first_publication_date)}</time>
                   </div>
-                  <div className={styles.authorDiv}>
+                  <div className={commonStyles.authorDiv}>
                     <FiUser />
                     <span>{post.data.author}</span>
                   </div>
@@ -117,5 +108,6 @@ export const getStaticProps: GetStaticProps = async () => {
         results,
       },
     },
+    revalidate: 60 * 60 * 24, // 24 horas
   };
 };
